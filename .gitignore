@@ -1,0 +1,3 @@
+*.o
+*.mod
+kgen_statefile.lst
