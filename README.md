@@ -8,3 +8,9 @@ Links to the main model repositories:
     - POP2: https://github.com/ESCOMP/POP2-CESM.git
     - MOM6: https://github.com/NCAR/MOM6.git
     - CESM: https://github.com/ESCOMP/cesm.git
+
+Note: The LLVM IR files are generated using flang compiler on
+cheyenne (gnu/8.1.0). Instructions for building flang: 
+https://github.com/flang-compiler/flang/wiki/Building-Flang
+
+contact: altuntas@ucar.edu
