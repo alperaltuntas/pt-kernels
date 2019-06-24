@@ -1,0 +1,21 @@
+POP2-CESM kernels
+altuntas@ucar.edu
+
+Kernel subroutine: merged_streamfunction
+                   (hmix_gm module @ hmix.F90)
+
+The kernel subroutine "merged_streamfunction" is compute-intensive and
+takes about %3 of POP2-only CESM runs.The subroutine constructs a merged
+streamfunction that has the appropriate behavior in the surface diabatic
+region, transition layer, and adiabatic interior.
+
+
+The following kgen command was executed to extract this kernel on cheyenne:
+
+$kgen $target --cmd-clean "cd $casedir; ./case.build --clean-all" --cmd-build "cd $casedir; ./case.build" --cmd-run "cd $casedir; ./case.submit" --timing "repeat=1"  --mpi comm=mpi_communicator_ocn,use="ocn_communicator:mpi_communicator_ocn",header="/glade/u/apps/ch/opt/mpt/2.19/opt/hpe/hpc/mpt/mpt-2.19/include/mpif.h" --outdir "$casedir/../kgen" -I /gpfs/fs1/work/altuntas/cesm.sandboxes/UFSCOMP.sbx_prectune/components/pop/source/:/gpfs/fs1/work/altuntas/cesm.sandboxes/UFSCOMP.sbx_prectune/components/pop/mpi/ -e $casedir/exclude.ini
+
+
+### exclude.ini:
+[namepath]
+pio = skip_module
+ifcore = skip_module
