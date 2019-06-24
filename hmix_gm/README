@@ -1,9 +1,9 @@
 POP2-CESM kernels
 altuntas@ucar.edu
 
-The kernels are to be used for optimization/verification studies and usually consist of   
- (1) a main Fortran module including the subroutine targeted for optimization/verification.
-     In this kernel, (1) is:
+The kernels are to be used for optimization/verification studies and usually consist of
+ (1) A main Fortran module containing the subroutine targeted for optimization/verification.
+     In this kernel, the targeted subroutine is:
         merged_streamfunction (in hmix_gm module @ hmix_gm.F90)
  (2) auxiliary modules required for dependencies
  (3) data sampled from an actual model run and to be used to run the kernels
@@ -18,7 +18,7 @@ Description of the targeted subroutine, "merged_streamfunction":
 
 
 Notes on Kernel Extraction:
-(*) The following kgen command was executed to extract this kernel on cheyenne:
+ (*) The following kgen command was executed to extract this kernel on cheyenne:
 
   $kgen $target --cmd-clean "cd $casedir; ./case.build --clean-all" --cmd-build "cd $casedir; ./case.build" --cmd-run "cd $casedir; ./case.submit" --timing "repeat=1"  --mpi comm=mpi_communicator_ocn,use="ocn_communicator:mpi_communicator_ocn",header="/glade/u/apps/ch/opt/mpt/2.19/opt/hpe/hpc/mpt/mpt-2.19/include/mpif.h" --outdir "$casedir/../kgen" -I /gpfs/fs1/work/altuntas/cesm.sandboxes/UFSCOMP.sbx_prectune/components/pop/source/:/gpfs/fs1/work/altuntas/cesm.sandboxes/UFSCOMP.sbx_prectune/components/pop/mpi/ -e $casedir/exclude.ini
 

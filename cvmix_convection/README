@@ -1,9 +1,9 @@
 POP2-CESM kernels
 altuntas@ucar.edu
 
-The kernels are to be used for optimization/verification studies and usually consist of 
- (1) a main Fortran module including the subroutine targeted for optimization/verification.
-     In this kernel, (1) is:
+The kernels are to be used for optimization/verification studies and usually consist of
+ (1) A main Fortran module containing the subroutine targeted for optimization/verification.
+     In this kernel, the targeted subroutine is:
         cvmix_coeffs_conv_low (in cvmix_convection module @ cvmix_convection.F90)
  (2) auxiliary modules required for dependencies
  (3) data sampled from an actual model run and to be used to run the kernels
@@ -11,7 +11,7 @@ The kernels are to be used for optimization/verification studies and usually con
 
 
 Description of the targeted subroutine:
-    The kernel subroutine "cvmix_coeffs_conv_low" computes vertical diffusion coefficients 
+    The kernel subroutine "cvmix_coeffs_conv_low" computes vertical diffusion coefficients
     for convective mixing. The subroutine corresponds to about 0.5% of ocean-only CESM runs.
     The module is part of CVMix, a library for parameterizing ocean vertical mixing processes.
 
