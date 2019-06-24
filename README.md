@@ -23,7 +23,7 @@ The kernels are to be used for optimization/verification studies and usually con
 				 compiler. Otherwise, verification tests may fail.
 
 ### Running kernels:
-	```mpirun -n 1 ./kernel.exe```
+	mpirun -n 1 ./kernel.exe
 
 ------
 
