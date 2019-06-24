@@ -1,0 +1,28 @@
+POP2-CESM kernels
+altuntas@ucar.edu
+
+The kernels are to be used for optimization/verification studies and usually consist of
+ (1) A main Fortran module containing the subroutine targeted for optimization/verification.
+     In this kernel, the targeted subroutine is:
+        preconditioner (in POP_SolversMod module @ POP_SolversMod.F90)
+ (2) auxiliary modules required for dependencies
+ (3) data sampled from an actual model run and to be used to run the kernels
+ (4) the kernel driver.
+
+
+Description of the targeted subroutine, "preconditioner":
+    The kernel subroutine "preconditioner" applies a precomputed preconditioner as a
+		nine-point stencil operator. The POP_SolversMod module contains routines and 
+		operators for solving the elliptic system for surface pressure in the barotropic mode.
+
+
+Notes on Kernel Extraction:
+ (*) The following kgen command was executed to extract this kernel on izumi:
+
+  $kgen $target --cmd-clean "cd $casedir; ./case.build --clean-all" --cmd-build "cd $casedir; ./case.build" --cmd-run "cd $casedir; ./case.submit" --timing "repeat=1" --mpi comm=mpi_communicator_ocn,use="ocn_communicator:mpi_communicator_ocn",header="/cluster/mvapich2-2.3-intel-cluster-19.0.1/include/mpif.h" --outdir "$casedir/../kgen" -I /home/altuntas/cesm.sandboxes/UFSCOMP.sbx/components/pop/source/:/home/altuntas/cesm.sandboxes/UFSCOMP.sbx/components/pop/mpi/ -e $casedir/exclude.ini
+
+where exclude.ini is as follows:
+
+[namepath]
+pio = skip_module
+ifcore = skip_module
