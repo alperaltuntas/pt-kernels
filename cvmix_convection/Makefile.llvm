@@ -2,7 +2,10 @@
 
 # Originally used compiler(s)
 FC_0 := flang
-FC_FLAGS_SET_0 := -O0 -I/glade/u/apps/ch/opt/mpt/2.19/opt/hpe/hpc/mpt/mpt-2.19/include/ -lmpi -ffree-form
+FC_FLAGS_SET_0 := -O0 -cpp -ffree-form
+### Additional MPI flags for cheyenne:
+#FC_FLAGS_SET_0 := $(FC_FLAGS_SET_0) -I/glade/u/apps/ch/opt/mpt/2.19/include/ -lmpi -D_MPI
+
 
 ALL_OBJS := cvmix_convection.o cvmix_kinds_and_types.o kernel_driver.o kgen_utils.o tprof_mod.o
 

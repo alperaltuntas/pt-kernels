@@ -11,8 +11,10 @@
         USE cvmix_kinds_and_types, ONLY: cvmix_data_type 
         USE cvmix_kinds_and_types, ONLY: kr_cvmix_kinds_and_types_cvmix_data_type 
         IMPLICIT NONE 
-          
-        include "mpif.h" 
+
+#ifdef _MPI
+  include "mpif.h"
+#endif
           
         LOGICAL :: kgen_isverified 
         INTEGER :: kgen_ierr_list, kgen_unit_list 
@@ -26,6 +28,7 @@
         COMMON / state / kgen_mpirank, kgen_openmptid, kgen_kernelinvoke, kgen_evalstage, kgen_warmupstage, kgen_mainstage 
           
         TYPE(cvmix_data_type) :: cvmix_vars 
+#ifdef _MPI
         CALL MPI_INIT(kgen_ierr) 
         IF (kgen_ierr .NE. MPI_SUCCESS) THEN 
             PRINT *, "MPI Initialization is failed." 
@@ -33,6 +36,7 @@
         END IF 
         call mpi_comm_rank(mpi_comm_world, myrank, kgen_ierr) 
         call mpi_comm_size(mpi_comm_world, mpisize, kgen_ierr) 
+#endif
           
         kgen_total_time = 0.0_kgen_dp 
         kgen_min_time = HUGE(0.0_kgen_dp) 
@@ -147,7 +151,9 @@
             WRITE (*, "(A)") "****************************************************" 
         END IF   
           
+#ifdef _MPI
         CALL mpi_finalize(kgen_ierr) 
+#endif
           
     END PROGRAM   
     BLOCK DATA KGEN 
