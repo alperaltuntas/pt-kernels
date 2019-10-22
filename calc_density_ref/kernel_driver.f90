@@ -54,7 +54,7 @@
         kgen_unit_list = kgen_get_newunit() 
         OPEN (UNIT=kgen_unit_list, FILE="kgen_statefile.lst", STATUS="OLD", IOSTAT=kgen_ierr_list) 
         IF (kgen_ierr_list .NE. 0) THEN 
-            CALL SYSTEM("ls -1 calculate_density_array_wright_ref.*.*.* > kgen_statefile.lst") 
+            CALL SYSTEM("ls -1 data/calculate_density_array_wright_ref.*.*.* > kgen_statefile.lst")
             CALL SLEEP(1) 
             kgen_unit_list = kgen_get_newunit() 
             OPEN (UNIT=kgen_unit_list, FILE="kgen_statefile.lst", STATUS="OLD", IOSTAT=kgen_ierr_list) 
@@ -219,4 +219,4 @@
         INTEGER :: kgen_mpirank = 0, kgen_openmptid = 0, kgen_kernelinvoke = 0 
         LOGICAL :: kgen_evalstage = .TRUE., kgen_warmupstage = .FALSE., kgen_mainstage = .FALSE. 
         COMMON / state / kgen_mpirank, kgen_openmptid, kgen_kernelinvoke, kgen_evalstage, kgen_warmupstage, kgen_mainstage 
-    END BLOCK DATA KGEN 
+    END BLOCK DATA KGEN
