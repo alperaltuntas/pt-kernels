@@ -16,13 +16,13 @@ run: build
 MOM_EOS_Wright.o: MOM_EOS_Wright.F90 kgen_utils.o tprof_mod.o
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
-kernel_driver.o: kernel_driver.f90 MOM_EOS_Wright.o kgen_utils.o tprof_mod.o
+kernel_driver.o: aux_modules/kernel_driver.f90 MOM_EOS_Wright.o kgen_utils.o tprof_mod.o
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
-kgen_utils.o: kgen_utils.f90
+kgen_utils.o: aux_modules/kgen_utils.f90
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
-tprof_mod.o: tprof_mod.f90
+tprof_mod.o: aux_modules/tprof_mod.f90
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
 clean:
