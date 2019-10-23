@@ -1,0 +1,49 @@
+POP2-CESM kernels
+altuntas@ucar.edu
+
+The kernels are to be used for optimization/verification studies and usually consist of
+ (1) A main Fortran module containing the subroutine targeted for optimization/verification.
+     In this kernel, the targeted subroutine is:
+        calculate_density_array_wright_noref (in target_subroutine.F90)
+ (2) auxiliary modules required for dependencies
+ (3) data sampled from an actual model run and to be used to run the kernels
+ (4) the kernel driver.
+
+
+Description of the targeted subroutine:
+    The kernel subroutine "calculate_density_array_wright_noref" computes the density of sea water (rho in
+    [kg m-3]) from salinity (S [PSU]), potential temperature (T [degC]), and pressure [Pa].  It uses the 
+    expression from Wright, 1997, J. Atmos. Ocean. Tech., 14, 735-740. The version in this kernel corresponds
+    to computation without a given reference density. The data in this kernel is generated with Intel 18 compiler.
+
+
+Notes on Kernel Extraction:
+
+Makefile:
+
+KGEN_HOME := /glade/work/altuntas/KGen/
+KGEN := ${KGEN_HOME}/bin/kgen
+
+BLDDIR = "/glade/work/altuntas/mom6.standalone/MOM6-cases.sbx-kernel/build/intel/ocean_only/debug"
+SRCDIR = "/glade/work/altuntas/mom6.standalone/MOM6-cases.sbx-kernel/src/MOM6/src"
+RUNDIR = "/glade/scratch/altuntas/mom6.standalone/resting/z-kgen"
+CALLSITE := equation_of_state/MOM_EOS_Wright.F90:MOM_EOS_Wright:calculate_density_array_wright:calculate_density_array_wright_noref
+
+FMSDIR = /glade/work/altuntas/mom6.standalone/MOM6-cases.sbx-kernel/src/FMS
+INCLUDE = "${FMSDIR}/diag_manager/:${FMSDIR}/fms/:${FMSDIR}/include:${FMSDIR}/mpp:${FMSDIR}/time_interp:${FMSDIR}/time_manager:${FMSDIR}/mpp/include"
+test:
+  ${KGEN} \
+    -I ${INCLUDE} \
+    --timing repeat=500 \
+    --invocation 0:0:1000,26:0:2000,10:0:3000,28:0:4000,1:0:5000,29:0:6000,3:0:7000,13:0:8000,31:0:9000,14:0:10000,33:0:11000,18:0:12000,34:0:13000,19:0:14000,35:0:15000,22:0:16000,8:0:17000,25:0:18000 \
+    --mpi enable \
+    --cmd-clean "cd ${BLDDIR}; make clean" \
+    --cmd-build "cd ${BLDDIR}; make DEBUG=1 NETCDF=3 MOM6 -j" \
+    --cmd-run "cd ${RUNDIR};mpirun -n 36 ${BLDDIR}/MOM6" \
+    --mpi header="/glade/u/apps/ch/opt/mpt/2.19/include/mpif.h" \
+    -e exclude.ini \
+    ${SRCDIR}/${CALLSITE}
+
+clean:
+  rm -rf kernel state kgen.log _kgen_compflag_cmdwrapper.sh strace.log include.ini model model.ini elapsedtime coverage papi
+
