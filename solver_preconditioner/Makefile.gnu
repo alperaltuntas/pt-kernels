@@ -2,8 +2,8 @@
 
 # Originally used compiler(s)
 #FC_0 := /usr/local/intel-cluster-19.0.1/bin/ifort
-FC_0 := mpif90
-FC_FLAGS_SET_0 := -O0 -fconvert=big-endian -ffree-form -D_MPI
+FC_0 := gfortran
+FC_FLAGS_SET_0 := -O0 -fconvert=big-endian -ffree-form -cpp
 
 ALL_OBJS := POP_SolversMod.o POP_IOUnitsMod.o POP_KindsMod.o kernel_driver.o kgen_utils.o tprof_mod.o
 

@@ -2,8 +2,8 @@
 
 # Originally used compiler(s)
 #FC_0 := /glade/u/apps/opt/intel/2019u2/compilers_and_libraries/linux/bin/intel64/ifort
-FC_0 := mpif90
-FC_FLAGS_SET_0 := -O2 -fconvert=big-endian -ffree-form -D_MPI
+FC_0 := gfortran
+FC_FLAGS_SET_0 := -O2 -fconvert=big-endian -ffree-form -cpp
 
 ALL_OBJS := cvmix_convection.o cvmix_kinds_and_types.o kernel_driver.o kgen_utils.o tprof_mod.o
 
