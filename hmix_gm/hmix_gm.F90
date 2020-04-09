@@ -1111,12 +1111,10 @@
               END IF   
               check_result = CHECK_IDENTICAL 
           ELSE 
-              ALLOCATE &
-              &(buf1_diabatic_depth(SIZE(var%diabatic_depth,dim=1),SIZE(var%diabatic_depth,dim=2),SIZE(var%diabatic_depth,dim=3)))&
-              & 
-              ALLOCATE &
-              &(buf2_diabatic_depth(SIZE(var%diabatic_depth,dim=1),SIZE(var%diabatic_depth,dim=2),SIZE(var%diabatic_depth,dim=3)))&
-              & 
+              ALLOCATE (buf1_diabatic_depth(SIZE(var%diabatic_depth,dim=1),SIZE(var%diabatic_depth,dim=2),&
+                                            SIZE(var%diabatic_depth,dim=3)))
+              ALLOCATE (buf2_diabatic_depth(SIZE(var%diabatic_depth,dim=1),SIZE(var%diabatic_depth,dim=2),&
+                                            SIZE(var%diabatic_depth,dim=3)))
               n_diabatic_depth = COUNT(var%diabatic_depth /= kgenref_var%diabatic_depth) 
               WHERE ( ABS(kgenref_var%diabatic_depth) > kgen_minvalue ) 
                   buf1_diabatic_depth = ((var%diabatic_depth-kgenref_var%diabatic_depth)/kgenref_var%diabatic_depth)**2 
@@ -1249,12 +1247,10 @@
               END IF   
               check_result = CHECK_IDENTICAL 
           ELSE 
-              ALLOCATE &
-              &(buf1_interior_depth(SIZE(var%interior_depth,dim=1),SIZE(var%interior_depth,dim=2),SIZE(var%interior_depth,dim=3)))&
-              & 
-              ALLOCATE &
-              &(buf2_interior_depth(SIZE(var%interior_depth,dim=1),SIZE(var%interior_depth,dim=2),SIZE(var%interior_depth,dim=3)))&
-              & 
+              ALLOCATE (buf1_interior_depth(SIZE(var%interior_depth,dim=1),SIZE(var%interior_depth,dim=2),&
+                                            SIZE(var%interior_depth,dim=3)))
+              ALLOCATE (buf2_interior_depth(SIZE(var%interior_depth,dim=1),SIZE(var%interior_depth,dim=2),&
+                                            SIZE(var%interior_depth,dim=3)))
               n_interior_depth = COUNT(var%interior_depth /= kgenref_var%interior_depth) 
               WHERE ( ABS(kgenref_var%interior_depth) > kgen_minvalue ) 
                   buf1_interior_depth = ((var%interior_depth-kgenref_var%interior_depth)/kgenref_var%interior_depth)**2 

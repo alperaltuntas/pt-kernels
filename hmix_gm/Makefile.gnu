@@ -3,7 +3,7 @@
 # Originally used compiler(s)
 #FC_0 := /glade/u/apps/opt/intel/2019u2/compilers_and_libraries/linux/bin/intel64/ifort
 FC_0 := gfortran
-FC_FLAGS_SET_0 := -O2 -fconvert=big-endian -ffree-form
+FC_FLAGS_SET_0 := -O2 -fconvert=big-endian -ffree-form -cpp
 
 ALL_OBJS := hmix_gm.o kinds_mod.o hmix_gm_submeso_share.o blocks.o domain_size.o time_management.o grid.o io.o constants.o POP_KindsMod.o kernel_driver.o kgen_utils.o tprof_mod.o
 
