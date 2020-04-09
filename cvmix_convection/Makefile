@@ -19,7 +19,7 @@ cvmix_convection.o: cvmix_convection.F90 cvmix_kinds_and_types.o kgen_utils.o tp
 cvmix_kinds_and_types.o: aux_modules/cvmix_kinds_and_types.F90 kgen_utils.o tprof_mod.o
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
-kernel_driver.o: aux_modules/kernel_driver.f90 cvmix_convection.o cvmix_kinds_and_types.o kgen_utils.o tprof_mod.o
+kernel_driver.o: aux_modules/kernel_driver.F90 cvmix_convection.o cvmix_kinds_and_types.o kgen_utils.o tprof_mod.o
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
 kgen_utils.o: aux_modules/kgen_utils.f90

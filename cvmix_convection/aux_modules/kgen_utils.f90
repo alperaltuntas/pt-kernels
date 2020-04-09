@@ -338,7 +338,6 @@ subroutine kgen_print_check(kname, check)
    type(check_t), intent(in) ::  check
 
    write (*,*) TRIM(kname),': Tolerance for normalized RMS: ',kgen_tolerance
-   !write (*,*) TRIM(kname),':',check%numFatal,'fatal errors,',check%numWarning,'warnings detected, and',check%numIdentical,'identical out of',check%numTotal,'variables checked'
    write (*,*) TRIM(kname),': Number of variables checked: ',check%numTotal
    write (*,*) TRIM(kname),': Number of Identical results: ',check%numIdentical
    write (*,*) TRIM(kname),': Number of variables within tolerance(not identical): ',check%numInTol

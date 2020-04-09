@@ -2,13 +2,13 @@
 
 # Originally used compiler(s)
 #FC_0 := /glade/u/apps/opt/intel/2019u2/compilers_and_libraries/linux/bin/intel64/ifort
-FC_0 := gfortran
+FC_0 := rose-fortran
 FC_FLAGS_SET_0 := -O2 -fconvert=big-endian -ffree-form -cpp
 
 ALL_OBJS := cvmix_convection.o cvmix_kinds_and_types.o kernel_driver.o kgen_utils.o tprof_mod.o
 
 build: ${ALL_OBJS}
-	${FC_0} ${FC_FLAGS_SET_0} -o kernel.exe $^  
+	${FC_0} ${FC_FLAGS_SET_0} -lgfortran -o kernel.exe $^  
 
 run: build
 	mpirun -np 2 ./kernel.exe
@@ -29,4 +29,4 @@ tprof_mod.o: aux_modules/tprof_mod.f90
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
 clean:
-	rm -f kernel.exe *.mod ${ALL_OBJS}
+	rm -f kernel.exe *.mod ${ALL_OBJS} *.rmod *postprocessed.f90 rose_*.?90
