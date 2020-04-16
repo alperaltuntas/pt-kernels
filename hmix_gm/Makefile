@@ -43,7 +43,7 @@ constants.o: aux_modules/constants.F90 kgen_utils.o tprof_mod.o kinds_mod.o
 POP_KindsMod.o: aux_modules/POP_KindsMod.F90 kgen_utils.o tprof_mod.o
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
-kernel_driver.o: aux_modules/kernel_driver.f90 hmix_gm.o kinds_mod.o hmix_gm_submeso_share.o blocks.o domain_size.o time_management.o grid.o io.o constants.o POP_KindsMod.o kgen_utils.o tprof_mod.o
+kernel_driver.o: aux_modules/kernel_driver.F90 hmix_gm.o kinds_mod.o hmix_gm_submeso_share.o blocks.o domain_size.o time_management.o grid.o io.o constants.o POP_KindsMod.o kgen_utils.o tprof_mod.o
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
 kgen_utils.o: aux_modules/kgen_utils.f90
