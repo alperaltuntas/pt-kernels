@@ -9,7 +9,7 @@ module funarc_mod
     USE kgen_utils_mod, ONLY: kgen_dp, kgen_array_sumcheck 
     USE tprof_mod, ONLY: tstart, tstop, tnull, tprnt 
     IMPLICIT NONE 
-  integer, parameter :: ITERS = 10
+  integer, parameter :: ITERS = 1
   PUBLIC funarc_wrapper 
 
 contains

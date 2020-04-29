@@ -1,6 +1,6 @@
 module funarc_mod
   implicit none
-  integer, parameter :: ITERS = 10
+  integer, parameter :: ITERS = 1
 
 contains
 
