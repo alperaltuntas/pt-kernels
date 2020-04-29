@@ -1,0 +1,14 @@
+KGEN := /glade/work/altuntas/KGen/bin/kgen
+
+CALLSITE := funarc_mod.f90
+
+test:
+	${KGEN} \
+    --cmd-clean "make clean" \
+    --cmd-build "make" \
+    --cmd-run "./main" \
+    ${CALLSITE}
+
+clean:
+	rm -rf kernel state kgen.log _kgen_compflag_cmdwrapper.sh strace.log include.ini model model.ini elapsedtime coverage papi
+
