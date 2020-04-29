@@ -24,4 +24,4 @@ tprof_mod.o: tprof_mod.f90
 	${FC_0} ${FC_FLAGS_SET_0} -c -o $@ $<
 
 clean:
-	rm -f kernel.exe *.mod ${ALL_OBJS}
+	rm -f kernel.exe *.mod ${ALL_OBJS} *.rmod *postprocessed.f90 rose_*.?90
