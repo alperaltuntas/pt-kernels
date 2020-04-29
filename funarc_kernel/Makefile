@@ -1,7 +1,7 @@
 # Makefile for KGEN-generated kernel
 
 FC_0 := /glade/work/altuntas/ROSE/gcc/7.4.0/install/bin/gfortran
-FC_FLAGS_SET_0 := 
+FC_FLAGS_SET_0 := -ffree-line-length-none
 
 ALL_OBJS := funarc_mod.o kernel_driver.o kgen_utils.o tprof_mod.o
 
